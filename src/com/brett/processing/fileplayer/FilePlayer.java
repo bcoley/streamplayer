@@ -5,7 +5,9 @@ import java.awt.FileDialog;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.JFileChooser;
@@ -41,13 +43,18 @@ public class FilePlayer extends BasePlayer {
     public void setup() {
         minim = new Minim(this);
         imageFetcher = new PImageFetcher();
-        size(200,200);
+        size(400, 300);
+        if (frame != null) {
+            frame.setResizable(true);
+        }
         colorMode(HSB);
         rectMode(CENTER);
         ellipseMode(CENTER);
         background(random(255), random(255), random(255));
         frameRate(24);
         textSize(18);
+        showInstructions();
+        showControlPanel();
     }
 
     private void playNextSong() {
@@ -205,9 +212,11 @@ public class FilePlayer extends BasePlayer {
         }
         else if (key == 'f') {
             setAdultFilter(!isAdultFilter());
+            showInstructions();
         }
         else if (key == 'l') {
             setUseLyrics(!isUseLyrics());
+            showInstructions();
         }
         else if (key == 'n') {
             if (player != null) {
@@ -228,8 +237,34 @@ public class FilePlayer extends BasePlayer {
         else if (key == 'r') {
             Collections.shuffle(playlist.getSongs());
         }
+        else if (key == 's') {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyMMddHHmmss");
+            Date date = new Date();
+            saveFrame("FilePlayer_" + dateFormat.format(date) + ".jpg");
+        }
+        else if (key == 't') {
+            setShowTitle(!isShowTitle());
+            showInstructions();
+        }
     }
 
+    public void showInstructions() {
+        background(0);
+        fill(255, 255, random(255));
+        String instructions =  "space bar - play/pause " + System.lineSeparator() +
+                                "c - choose files, mp3s and playlists." + System.lineSeparator() +
+                                "f - filter - adult filtering, current setting: " + isAdultFilter() + System.lineSeparator() +
+                                "l - lyrics - show lyrics, current setting: " + isUseLyrics() + System.lineSeparator() +
+                                "n - next song in playlist" + System.lineSeparator() +
+                                "p - previous song in playlist" + System.lineSeparator() +
+                                "r - randomize (shuffle) current playlist" + System.lineSeparator() +
+                                "s - save screen" + System.lineSeparator() +
+                                "t - show title, current setting: " + isShowTitle() +  System.lineSeparator() +
+                                "x - exit";
+        text(instructions, 20, 20, 10);
+        
+    }
+    
     public PlaylistTableModel getPlaylist() {
         return playlist;
     }

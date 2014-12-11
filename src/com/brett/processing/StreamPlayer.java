@@ -139,6 +139,7 @@ public class StreamPlayer extends BasePlayer {
 		}
 		  else if (key == 't') {
 	            setShowTitle(!isShowTitle());
+	            showInstructions();
 	        }
 		else if (key == 'x') {
 			if (player != null) {
@@ -229,6 +230,7 @@ public class StreamPlayer extends BasePlayer {
 		                        "l - lyrics - show lyrics, current setting: " + isUseLyrics() + System.lineSeparator() +
 		                        "o - open a URL" + System.lineSeparator() +
 		                        "s - save screen" + System.lineSeparator() +
+		                        "t - show title, current setting: " + isShowTitle() +  System.lineSeparator() +
 								"x - exit";
 		text(instructions, 20, 20, 10);
 		
