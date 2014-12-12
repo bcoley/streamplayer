@@ -12,5 +12,7 @@ public class ChristmasVisualizationManager extends VisualizationManager {
         setParent(parent);
         addVisualizer(new SnowVisualizer(parent));
         addVisualizer(new SnowflakeVisualizer(parent));
+        setMinimumTime(20);
+        setMaximumTime(45);
     }
 }

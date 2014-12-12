@@ -21,6 +21,10 @@ public class VisualizationManager {
     
     protected Random random = new Random(System.currentTimeMillis());
     
+    protected int minimumTime = 5;
+    
+    protected int maximumTime = 20;
+    
     public VisualizationManager() {
         
     }
@@ -47,7 +51,7 @@ public class VisualizationManager {
     }
     
     private void nextVisualization() {
-        nextSwitchTime = System.currentTimeMillis() + (1000L * (5L + random.nextInt(15)));
+        nextSwitchTime = System.currentTimeMillis() + (1000L * (minimumTime + random.nextInt(maximumTime - minimumTime)));
         Visualizer nextVisualizer = visualizers.get(random.nextInt(visualizers.size()));
         if (nextVisualizer != currentVisualizer) {
             currentVisualizer = nextVisualizer;
@@ -62,4 +66,22 @@ public class VisualizationManager {
     public void setParent(PApplet parent) {
         this.parent = parent;
     }
+
+    public int getMinimumTime() {
+        return minimumTime;
+    }
+
+    public void setMinimumTime(int minimumTime) {
+        this.minimumTime = minimumTime;
+    }
+
+    public int getMaximumTime() {
+        return maximumTime;
+    }
+
+    public void setMaximumTime(int maximumTime) {
+        this.maximumTime = maximumTime;
+    }
+    
+    
 }
