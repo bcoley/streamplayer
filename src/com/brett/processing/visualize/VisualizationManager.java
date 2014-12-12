@@ -4,11 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import processing.core.PApplet;
+
 import com.brett.processing.visualize.randompix.RandomPixVisualizer;
 import com.brett.processing.visualize.splatter.SplatterVisualizer;
-
-import processing.core.PApplet;
-import processing.core.PConstants;
 
 public class VisualizationManager {
 
@@ -39,11 +38,8 @@ public class VisualizationManager {
     }
 
     public void draw() {
-    	if (System.currentTimeMillis() > (500 + nextSwitchTime)) {
-            nextVisualization();
-    	}
         if (System.currentTimeMillis() > nextSwitchTime) {
-            parent.filter(PConstants.BLUR);
+            nextVisualization();
         }
         else {
         	currentVisualizer.draw();
