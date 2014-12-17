@@ -4,7 +4,7 @@ import processing.core.PApplet;
 
 import com.brett.processing.visualize.Visualizer;
 
-public class RandomPixVisualizer extends Visualizer {
+public class RandomPixelVisualizer extends Visualizer {
 
 
     private int baseColor;
@@ -13,7 +13,7 @@ public class RandomPixVisualizer extends Visualizer {
     
     boolean sparkle = false;
 
-    public RandomPixVisualizer(PApplet parent) {
+    public RandomPixelVisualizer(PApplet parent) {
         super(parent);
     }
 
@@ -39,7 +39,7 @@ public class RandomPixVisualizer extends Visualizer {
     private void sparkle() {
         parent.loadPixels();
         for (int i = 0; i < numberOfPixels; i++) {
-            parent.pixels[rand.nextInt(parent.pixels.length)] = baseColor++;
+            parent.pixels[rand.nextInt(parent.pixels.length)] = parent.color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255), 125);
         }
         parent.updatePixels();
         numberOfPixels++;
@@ -47,10 +47,11 @@ public class RandomPixVisualizer extends Visualizer {
     
     private void snow() {
         parent.loadPixels();
-        for (int i = 0; i < parent.pixels.length; i++) {
-            parent.pixels[i] = parent.color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255), 125);
+        for (int i = 0; i < numberOfPixels; i++) {
+            parent.pixels[rand.nextInt(parent.pixels.length)] =  baseColor++;
         }
         parent.updatePixels();
+        numberOfPixels++;
     }
 
 }

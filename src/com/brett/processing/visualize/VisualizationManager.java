@@ -6,7 +6,7 @@ import java.util.Random;
 
 import processing.core.PApplet;
 
-import com.brett.processing.visualize.randompix.RandomPixVisualizer;
+import com.brett.processing.visualize.randompix.RandomPixelVisualizer;
 import com.brett.processing.visualize.splatter.SplatterVisualizer;
 
 public class VisualizationManager {
@@ -34,7 +34,7 @@ public class VisualizationManager {
         visualizers.add(new DefaultVisualizer(parent));
         visualizers.add(new SplatterVisualizer(parent));
         visualizers.add(new DoNothingVisualizer(parent));
-        visualizers.add(new RandomPixVisualizer(parent));
+        visualizers.add(new RandomPixelVisualizer(parent));
     }
 
     public void addVisualizer(Visualizer visualizer) {
